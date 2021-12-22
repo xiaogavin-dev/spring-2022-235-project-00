@@ -1,6 +1,7 @@
 #include "Motorcycle.hpp"
 #include <cstdlib>
 #include <string>
+#include <ctime>
 
 Motorcycle::Motorcycle():Motorcycle(rand() % 4) {}
 
@@ -17,11 +18,11 @@ Motorcycle::Motorcycle(int kind) {
 }
 
 std::string Motorcycle::getDirection() { 
-
+    return 0;
 }
 
 std::string Motorcycle::getBikeType() { 
-    switch (this->brand_) {
+    switch(this->brand_) {
     case 0: 
         return "YAMAHA";
     
@@ -34,4 +35,32 @@ std::string Motorcycle::getBikeType() {
     case 3: 
         return "KAWSAKI";
     }
+
+    return 0;
+}
+
+float Motorcycle::getSpeed() { 
+    return this->curr_speed_;
+}
+
+float Motorcycle::getDistanceTraveled() { 
+    return this->distance_traveled_; 
+}
+
+int Motorcycle::getIntensity() { 
+    switch(this->curr_acceleration_) { 
+        case 0: 
+            return bike_details::acceleration(0);
+
+        case 1: 
+            return bike_details::acceleration(1);
+
+        case 2:
+            return bike_details::acceleration(2);
+
+        case 3:
+            return bike_details::acceleration(3);
+    }
+
+    return 0;  
 }

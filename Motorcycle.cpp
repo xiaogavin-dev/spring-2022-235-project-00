@@ -47,20 +47,18 @@ float Motorcycle::getDistanceTraveled() {
     return this->distance_traveled_; 
 }
 
-int Motorcycle::getIntensity() { 
-    switch(this->curr_acceleration_) { 
-        case 0: 
-            return bike_details::acceleration(0);
+int Motorcycle::getIntensity() {
+    return bike_details::acceleration(this->curr_acceleration_);  
+}
 
-        case 1: 
-            return bike_details::acceleration(1);
+void Motorcycle::turn(float degrees) { 
+    // gets degrees in range of -360 <= d <= 360
+    float d = (int)degrees % 360;
 
-        case 2:
-            return bike_details::acceleration(2);
+    this->curr_direction_ += d; 
 
-        case 3:
-            return bike_details::acceleration(3);
+    // checks to see if direction is outside of the bounds of -360 <= d <= 360
+    if(this->curr_direction_ >= 360 || this->curr_direction_ <= -360) { 
+        curr_direction_ = (int)this->curr_direction_ % 360;
     }
-
-    return 0;  
 }
